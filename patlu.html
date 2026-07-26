@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>For Deeksha ✦</title>
+  <meta name="description" content="A little universe, built just for you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+/* ============================================================
+   For Deeksha — Birthday Universe
+   Palette: black · graphite · silver · pearl
+   ============================================================ */
+
+:root {
+  --bg-0: #050506;
+  --bg-1: #0b0b0f;
+  --bg-2: #14141a;
+  --ink: #f4f4f6;
+  --ink-dim: #b9b9c2;
+  --ink-mute: #6f6f78;
+  --silver-1: #e8e8ee;
+  --silver-2: #b8b8c2;
+  --silver-3: #7a7a85;
+  --silver-shine: linear-gradient(180deg, #ffffff 0%, #d9d9df 40%, #8f8f97 70%, #ececf1 100%);
+  --glass: rgba(255, 255, 255, 0.035);
+  --glass-brd: rgba(255, 255, 255, 0.08);
+
+  --font-display: "Cormorant Garamond", "Playfair Display", serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+html, body {
+  background: var(--bg-0);
+  color: var(--ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none; /* replaced by sparkles; still allow default on touch */
+}
+
+@media (hover: none) { html, body { cursor: auto; } }
+
+/* ---------- Fixed background layers ---------- */
+.bg-gradient {
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(1200px 800px at 20% 10%, rgba(90,90,110,0.20), transparent 60%),
+    radial-gradient(900px 700px at 80% 90%, rgba(60,60,80,0.18), transparent 65%),
+    linear-gradient(180deg, #050506 0%, #0a0a10 40%, #050508 100%);
+  z-index: -4;
+}
+
+#starfield, #sparkles {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  pointer-events: none;
+}
+#starfield { z-index: -3; }
+#sparkles  { z-index: 50; }
+
+.vignette {
+  position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.7) 100%);
+}
+
+.shooting-star {
+  position: fixed;
+  top: -10px; left: -10px;
+  width: 2px; height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px 2px rgba(255,255,255,0.9);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.shooting-star::after {
+  content: "";
+  position: absolute;
+  top: 50%; right: 100%;
+  width: 140px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.85));
+  transform: translateY(-50%);
+}
+
+/* ---------- Layout ---------- */
+main { position: relative; z-index: 2; }
+
+.section {
+  min-height: 100vh;
+  padding: 12vh 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ---------- Hero ---------- */
+.hero-inner {
+  text-align: center;
+  max-width: 900px;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--silver-3);
+  margin-bottom: 3rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.hero-title .line { display: block; }
+
+.hero-title .name {
+  font-style: italic;
+  background: var(--silver-shine);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 30px rgba(220,220,235,0.15));
+}
+
+.hero-title .heart {
+  display: inline-block;
+  font-size: 0.7em;
+  color: #d8d8de;
+  filter: drop-shadow(0 0 12px rgba(255,255,255,0.4));
+  animation: heartbeat 2.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  10%      { transform: scale(1.15); }
+  20%      { transform: scale(1); }
+  30%      { transform: scale(1.12); }
+  40%      { transform: scale(1); }
+}
+
+.hero-sub {
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  color: var(--ink-dim);
+  letter-spacing: 0.01em;
+}
+
+.scroll-hint {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--silver-3);
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 60px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { opacity: 0.3; transform: scaleY(0.7); }
+  50%     { opacity: 1;   transform: scaleY(1); }
+}
+
+/* ---------- Generic section content ---------- */
+.section-inner {
+  max-width: 780px;
+  width: 100%;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+}
+
+.section-inner.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-brd);
+  border-radius: 24px;
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 30px 80px -20px rgba(0,0,0,0.6);
+}
+
+.section-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--silver-3);
+  margin-bottom: 1.75rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 3rem;
+  background: var(--silver-shine);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-title em {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.lines {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.lines li {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.1vw, 1.4rem);
+  line-height: 1.55;
+  color: var(--ink-dim);
+  padding: 0 1rem;
+  position: relative;
+  transition: color 0.4s var(--ease), text-shadow 0.4s var(--ease);
+}
+.lines li:hover {
+  color: var(--ink);
+  text-shadow: 0 0 24px rgba(255,255,255,0.25);
+}
+
+.lines li::before {
+  content: "✦";
+  display: block;
+  color: var(--silver-3);
+  font-size: 0.6em;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5em;
+}
+
+/* ---------- Infinite section (single line, drifting) ---------- */
+.section.drift {
+  min-height: 70vh;
+}
+.drift .section-inner {
+  padding: 2rem;
+}
+.drift .whisper {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 3.5vw, 2.3rem);
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 640px;
+  margin: 0 auto;
+  text-shadow: 0 0 40px rgba(255,255,255,0.1);
+}
+.drift .whisper::before,
+.drift .whisper::after {
+  content: "";
+  display: block;
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  margin: 2rem auto;
+}
+
+/* ---------- Reveal animations (via IntersectionObserver) ---------- */
+[data-reveal] .reveal-child,
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out);
+}
+
+[data-reveal].in-view,
+[data-reveal].in-view .reveal-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger child reveals */
+[data-reveal].in-view .reveal-child:nth-child(1) { transition-delay: 0.05s; }
+[data-reveal].in-view .reveal-child:nth-child(2) { transition-delay: 0.25s; }
+[data-reveal].in-view .reveal-child:nth-child(3) { transition-delay: 0.45s; }
+[data-reveal].in-view .reveal-child:nth-child(4) { transition-delay: 0.7s; }
+[data-reveal].in-view .reveal-child:nth-child(5) { transition-delay: 0.95s; }
+[data-reveal].in-view .lines li { transition-delay: calc(0.1s * var(--i, 0)); }
+
+.lines li {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out), color 0.4s, text-shadow 0.4s;
+}
+.in-view .lines li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Divider ornament ---------- */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  color: var(--silver-3);
+  font-size: 0.9rem;
+}
+.ornament::before, .ornament::after {
+  content: "";
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 640px) {
+  .section { padding: 10vh 5vw; }
+  .section-inner { padding: 3rem 1rem; }
+  .eyebrow { font-size: 0.65rem; margin-bottom: 2rem; }
+  .scroll-hint { margin-top: 4rem; }
+  .lines { gap: 1.4rem; }
+  .lines li { padding: 0 0.25rem; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* Selection */
+::selection { background: rgba(220,220,235,0.25); color: #fff; }
+
+/* Scrollbar (subtle) */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2a2a30, #14141a);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: #3a3a42; }
+
+</style>
+</head>
+<body>
+  <!-- Fixed cosmic background layers -->
+  <div class="bg-gradient" aria-hidden="true"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <canvas id="sparkles" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- Shooting star element (animated via JS) -->
+  <div class="shooting-star" id="shootingStar" aria-hidden="true"></div>
+
+  <main id="content">
+
+    <!-- SECTION 1: HERO -->
+    <section class="section hero" data-reveal>
+      <div class="hero-inner">
+        <p class="eyebrow reveal-child">A little universe · built only for you</p>
+        <h1 class="hero-title">
+          <span class="line reveal-child">Happy Birthday,</span>
+          <span class="line name reveal-child">Deeksha <span class="heart">❤</span></span>
+        </h1>
+        <p class="hero-sub reveal-child">Do you know how special you are to me?</p>
+        <div class="scroll-hint reveal-child">
+          <span>scroll gently</span>
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curated sections will be injected here, followed by infinite generation -->
+    <div id="sections-root"></div>
+
+  </main>
+
+  <script>
+/* ============================================================
+   For Deeksha — Birthday Universe
+   Vanilla JS: starfield · sparkle cursor · infinite sections
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. CONTENT — curated sections + a large pool for infinite scroll
+   ------------------------------------------------------------ */
+
+const SECTIONS = [
+  {
+    tag: "chapter one",
+    title: "Reasons you make my world <em>softer</em>",
+    lines: [
+      "You laugh at your own jokes half a second early, and somehow it's the sound I remember most.",
+      "You make ordinary Tuesdays feel like something worth writing down.",
+      "You listen the way most people only pretend to.",
+      "Your kindness is quiet, and that's exactly why it's loud in my head.",
+      "You turned a stranger into a habit, and a habit into home.",
+      "Even your silences feel like company.",
+    ],
+  },
+  {
+    tag: "chapter two",
+    title: "Why I care for you, honestly",
+    lines: [
+      "Because you're the only person I want to tell nothing to — and end up telling everything.",
+      "Because when you're happy, my week rearranges itself around it.",
+      "Because I've noticed the way you look after everyone. I wanted to look after you back.",
+      "Because you make me want to be a little better without ever asking me to be.",
+      "Because you're the first thought that doesn't feel like an interruption.",
+      "Because caring for you never felt like a decision. It felt like breathing.",
+    ],
+  },
+  {
+    tag: "chapter three",
+    title: "Small things that <em>melt</em> me",
+    lines: [
+      "The way your eyes narrow half a second before you smile.",
+      "How you tuck your hair behind your ear when you're pretending not to be shy.",
+      "The little sigh you do when you're comfortable.",
+      "The face you make when you're concentrating — completely unaware, entirely you.",
+      "How you say my name when you're not asking for anything. Just saying it.",
+      "The way you type mid-thought and then delete it. I always wonder what it was.",
+    ],
+  },
+  {
+    tag: "chapter four",
+    title: "If love were <em>mathematics</em>",
+    lines: [
+      "I'd be a variable, you'd be the constant, and every equation would still resolve to us.",
+      "You + me = statistically improbable, mathematically undeniable.",
+      "My love for you is like pi — irrational, endless, and I'll happily spend a lifetime calculating it.",
+      "I ran the numbers. Turns out the only limit that doesn't exist is how much I like you.",
+      "You're the exception that broke every rule I had about being careful.",
+      "If I had to graph us, the curve would just be a heart. Sorry, science.",
+    ],
+  },
+  {
+    tag: "chapter five",
+    title: "If I could <em>freeze</em> time",
+    lines: [
+      "I'd pause it on the moment right before you laugh, when your whole face is deciding to.",
+      "On the quiet second you look at me and don't say anything.",
+      "On the walk we didn't want to end and pretended we didn't notice was ending.",
+      "On the text I re-read three times because I couldn't believe it was for me.",
+      "On the version of you that only I get to see.",
+      "On every ordinary hour that felt suspiciously like a memory being made.",
+    ],
+  },
+  {
+    tag: "chapter six",
+    title: "My <em>favourite</em> place",
+    lines: [
+      "...is wherever you happen to be standing.",
+      "The corner of a conversation where you start telling me something small.",
+      "That pocket of quiet, right after you fall asleep.",
+      "Anywhere your name is being said with love.",
+      "The three seconds between you saying \"guess what\" and you actually telling me.",
+      "Beside you. Just — beside you. That's the whole address.",
+    ],
+  },
+  {
+    tag: "chapter seven",
+    title: "You <em>vs.</em> everyone else",
+    lines: [
+      "Everyone else is a chapter. You're the reason I kept the book.",
+      "Other people are weather. You're the season I'd move for.",
+      "They tell stories. You are one.",
+      "Everyone talks. You mean it.",
+      "The world is loud. You're the sentence I actually hear.",
+      "There's you, and then there's a list of people who are not you.",
+    ],
+  },
+  {
+    tag: "chapter eight",
+    title: "Things I never <em>told</em> you",
+    lines: [
+      "I rehearse tiny things I want to say to you, and still mess them up. On purpose, maybe.",
+      "The first time you laughed at something I said, I made a mental note to become funnier.",
+      "I have a favourite photo of you that isn't even a good photo. It just is.",
+      "Sometimes I re-read our old messages just to remember how it started.",
+      "I've thought about you in places you've never been.",
+      "You're the softest thing I've ever taken seriously.",
+    ],
+  },
+  {
+    tag: "chapter nine",
+    title: "One <em>promise</em>",
+    lines: [
+      "I'll never make you feel like the smaller person in the room.",
+      "I'll remember the little things. That's the whole trick, isn't it.",
+      "I'll show up. Loud days, quiet days, and the days that don't have a name yet.",
+      "I'll be careful with you, even when we're being reckless together.",
+      "I'll keep choosing you — not because I have to, but because I keep wanting to.",
+      "And on the days you forget how much you are — I'll remind you, patiently, from the start.",
+    ],
+  },
+  {
+    tag: "chapter ten",
+    title: "For your birthday, then",
+    lines: [
+      "May this year be softer with you than the last.",
+      "May you get flowers for no reason and mean things happen to your enemies.",
+      "May the songs on shuffle be exactly the ones you needed.",
+      "May every version of you — the tired one, the loud one, the shy one — feel loved.",
+      "May you laugh so hard you forget to be self-conscious about it.",
+      "And may you always, always know: you are so, so, wildly cared for.",
+    ],
+  },
+];
+
+/* Pool for the never-ending drift section */
+const WHISPERS = [
+  "You're my favourite plot twist.",
+  "I think the universe is showing off with you.",
+  "Some people are lucky charms. You're mine.",
+  "You make being ordinary feel like a compliment.",
+  "I'd pick you in every timeline the multiverse offered.",
+  "You're a soft place in a very loud world.",
+  "Every good day I've had this year has your fingerprints on it.",
+  "Loving you is my least dramatic, most consistent decision.",
+  "You are the reason I stopped saying 'I'll never'.",
+  "You're my comfort character and my rebel.",
+  "I don't have a type. I have a you.",
+  "You look like the first line of a really good book.",
+  "You're not a moment. You're a season I want to stay in.",
+  "If comfort had a face, it would just borrow yours.",
+  "You're the only person I run out of hours with.",
+  "Home is a really small word for how you feel.",
+  "Meeting you was the best accident I never planned.",
+  "You're my proof that good things happen slowly and then all at once.",
+  "The best part of my day is anywhere your name is.",
+  "You're written in a font I can't stop reading.",
+  "You have the softest way of taking up space.",
+  "I keep finding new corners of you to like.",
+  "You're 3 a.m. thoughts and 3 p.m. sunlight, at the same time.",
+  "You make silence feel like a conversation.",
+  "You're a very good reason to answer the phone.",
+  "You're everything I would've asked for if I'd known to ask.",
+  "You feel like a promise I don't have to worry about.",
+  "You make ordinary time behave differently.",
+  "I like the person I become when you're around.",
+  "You are the exception to my whole personality.",
+  "Everything about you is my favourite everything.",
+  "You're the good news I keep re-reading.",
+  "If softness had a signature move, it'd be you.",
+  "You look like the answer to a question I forgot I was asking.",
+  "You're the plot; the rest is footnotes.",
+  "You are, without exaggeration, my favourite genre.",
+  "You have the kind of smile people write drafts about.",
+  "You're a whole mood, and I'm subscribed.",
+  "You're the reason I've stopped keeping score.",
+  "You're a very good idea I had once and refuse to unhave.",
+  "You're the warmest sentence in my entire year.",
+  "You feel like a Sunday I don't want to end.",
+  "I'd narrate a documentary about your small habits.",
+  "You are so quietly extraordinary.",
+  "You've made me a better keeper of small things.",
+  "You're the version of good I didn't know was possible.",
+  "You're the loveliest thing I take seriously.",
+  "I like you in a very serious, very unserious way.",
+  "You're the world's most compelling reason to stay soft.",
+  "You are, categorically, my person.",
+];
+
+/* ------------------------------------------------------------
+   2. RENDER SECTIONS
+   ------------------------------------------------------------ */
+
+const root = document.getElementById("sections-root");
+
+function buildSection(s, idx) {
+  const section = document.createElement("section");
+  section.className = "section";
+  section.setAttribute("data-reveal", "");
+
+  const inner = document.createElement("div");
+  inner.className = "section-inner glass";
+
+  const tag = document.createElement("p");
+  tag.className = "eyebrow section-tag reveal-child";
+  tag.textContent = s.tag;
+
+  const title = document.createElement("h2");
+  title.className = "section-title reveal-child";
+  title.innerHTML = s.title;
+
+  const list = document.createElement("ul");
+  list.className = "lines reveal-child";
+  s.lines.forEach((ln, i) => {
+    const li = document.createElement("li");
+    li.style.setProperty("--i", i + 1);
+    li.textContent = ln;
+    list.appendChild(li);
+  });
+
+  inner.append(tag, title, list);
+  section.appendChild(inner);
+  return section;
+}
+
+function buildDrift(text) {
+  const section = document.createElement("section");
+  section.className = "section drift";
+  section.setAttribute("data-reveal", "");
+
+  const inner = document.createElement("div");
+  inner.className = "section-inner";
+  inner.innerHTML = `<p class="whisper reveal-child">${text}</p>`;
+
+  section.appendChild(inner);
+  return section;
+}
+
+// Render curated sections
+SECTIONS.forEach((s, i) => root.appendChild(buildSection(s, i)));
+
+/* ------------------------------------------------------------
+   3. REVEAL ON SCROLL
+   ------------------------------------------------------------ */
+
+const revealObs = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("in-view");
+        revealObs.unobserve(e.target);
+      }
+    });
+  },
+  { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+);
+
+function observeAll() {
+  document.querySelectorAll("[data-reveal]:not(.observed)").forEach((el) => {
+    el.classList.add("observed");
+    revealObs.observe(el);
+  });
+}
+observeAll();
+
+/* ------------------------------------------------------------
+   4. INFINITE WHISPERS
+   ------------------------------------------------------------ */
+
+let whisperIndex = 0;
+function nextWhisper() {
+  // Shuffle-lite: pick pseudo-randomly but avoid immediate repeats
+  const i = (whisperIndex * 7 + Math.floor(Math.random() * 5)) % WHISPERS.length;
+  whisperIndex++;
+  return WHISPERS[i];
+}
+
+function appendMoreDrifts(count = 4) {
+  for (let i = 0; i < count; i++) {
+    root.appendChild(buildDrift(nextWhisper()));
+  }
+  observeAll();
+}
+
+// Initial drifts after curated sections
+appendMoreDrifts(6);
+
+// Sentinel that triggers loading more
+const sentinel = document.createElement("div");
+sentinel.style.cssText = "height:1px;width:100%;";
+sentinel.id = "sentinel";
+document.body.appendChild(sentinel);
+
+const infiniteObs = new IntersectionObserver(
+  (entries) => {
+    if (entries[0].isIntersecting) {
+      appendMoreDrifts(4);
+      // move sentinel to end
+      document.body.appendChild(sentinel);
+    }
+  },
+  { rootMargin: "1200px 0px 1200px 0px" }
+);
+infiniteObs.observe(sentinel);
+
+/* ------------------------------------------------------------
+   5. STARFIELD (subtle static + slow drift)
+   ------------------------------------------------------------ */
+
+const starCanvas = document.getElementById("starfield");
+const starCtx = starCanvas.getContext("2d");
+let stars = [];
+let W = 0, H = 0, DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+function resizeCanvas(canvas) {
+  W = window.innerWidth;
+  H = window.innerHeight;
+  canvas.width = W * DPR;
+  canvas.height = H * DPR;
+  canvas.style.width = W + "px";
+  canvas.style.height = H + "px";
+  canvas.getContext("2d").setTransform(DPR, 0, 0, DPR, 0, 0);
+}
+
+function initStars() {
+  resizeCanvas(starCanvas);
+  const count = Math.floor((W * H) / 6500); // density
+  stars = [];
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.1 + 0.2,
+      a: Math.random() * 0.6 + 0.2,
+      tw: Math.random() * 0.02 + 0.005, // twinkle speed
+      phase: Math.random() * Math.PI * 2,
+      vy: Math.random() * 0.02 + 0.005, // slow drift
+    });
+  }
+}
+
+function drawStars(t) {
+  starCtx.clearRect(0, 0, W, H);
+  for (const s of stars) {
+    s.phase += s.tw;
+    const alpha = s.a * (0.65 + 0.35 * Math.sin(s.phase));
+    starCtx.beginPath();
+    starCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    starCtx.fillStyle = `rgba(232, 232, 238, ${alpha})`;
+    starCtx.shadowColor = "rgba(220,220,235,0.6)";
+    starCtx.shadowBlur = s.r * 4;
+    starCtx.fill();
+    s.y += s.vy;
+    if (s.y > H) { s.y = -2; s.x = Math.random() * W; }
+  }
+  starCtx.shadowBlur = 0;
+  requestAnimationFrame(drawStars);
+}
+
+/* ------------------------------------------------------------
+   6. SPARKLE CURSOR (particles from pointer)
+   ------------------------------------------------------------ */
+
+const sparkCanvas = document.getElementById("sparkles");
+const sparkCtx = sparkCanvas.getContext("2d");
+let particles = [];
+let lastEmit = 0;
+
+function resizeSpark() { resizeCanvas(sparkCanvas); }
+
+function emitParticles(x, y, count = 2) {
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 0.9 + 0.15;
+    particles.push({
+      x, y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 0.15, // slight upward float
+      life: 1,
+      decay: Math.random() * 0.012 + 0.008,
+      size: Math.random() * 1.6 + 0.6,
+      rot: Math.random() * Math.PI,
+      vr: (Math.random() - 0.5) * 0.05,
+      shine: Math.random() * 0.4 + 0.6,
+    });
+  }
+  // Cap
+  if (particles.length > 300) particles.splice(0, particles.length - 300);
+}
+
+function drawStar(ctx, x, y, r, rot) {
+  // 4-point sparkle
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(rot);
+  ctx.beginPath();
+  for (let i = 0; i < 4; i++) {
+    const a = (i * Math.PI) / 2;
+    ctx.moveTo(0, 0);
+    ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(Math.cos(a) * r * 0.3, Math.sin(a) * r * 0.3);
+  }
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawParticles() {
+  sparkCtx.clearRect(0, 0, W, H);
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.005; // gentle gravity
+    p.vx *= 0.985;
+    p.vy *= 0.99;
+    p.rot += p.vr;
+    p.life -= p.decay;
+    if (p.life <= 0) { particles.splice(i, 1); continue; }
+
+    const alpha = Math.max(0, p.life) * p.shine;
+    // Glow
+    sparkCtx.globalCompositeOperation = "lighter";
+    const grad = sparkCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 6);
+    grad.addColorStop(0, `rgba(255,255,255,${alpha * 0.9})`);
+    grad.addColorStop(0.4, `rgba(220,220,235,${alpha * 0.35})`);
+    grad.addColorStop(1, "rgba(200,200,215,0)");
+    sparkCtx.fillStyle = grad;
+    sparkCtx.beginPath();
+    sparkCtx.arc(p.x, p.y, p.size * 6, 0, Math.PI * 2);
+    sparkCtx.fill();
+
+    // 4-point spark
+    sparkCtx.strokeStyle = `rgba(255,255,255,${alpha})`;
+    sparkCtx.lineWidth = 0.9;
+    drawStar(sparkCtx, p.x, p.y, p.size * 3.5, p.rot);
+  }
+  sparkCtx.globalCompositeOperation = "source-over";
+  requestAnimationFrame(drawParticles);
+}
+
+/* Pointer / touch handlers */
+function handleMove(e) {
+  const now = performance.now();
+  if (now - lastEmit < 12) return; // throttle
+  lastEmit = now;
+  let x, y;
+  if (e.touches && e.touches[0]) {
+    x = e.touches[0].clientX; y = e.touches[0].clientY;
+  } else {
+    x = e.clientX; y = e.clientY;
+  }
+  emitParticles(x, y, 3);
+}
+function handleTap(e) {
+  let x, y;
+  if (e.touches && e.touches[0]) {
+    x = e.touches[0].clientX; y = e.touches[0].clientY;
+  } else {
+    x = e.clientX; y = e.clientY;
+  }
+  emitParticles(x, y, 16);
+}
+
+window.addEventListener("mousemove", handleMove, { passive: true });
+window.addEventListener("touchmove", handleMove, { passive: true });
+window.addEventListener("click", handleTap, { passive: true });
+window.addEventListener("touchstart", handleTap, { passive: true });
+
+/* ------------------------------------------------------------
+   7. SHOOTING STARS (occasional)
+   ------------------------------------------------------------ */
+
+const shoot = document.getElementById("shootingStar");
+function fireShootingStar() {
+  const startX = Math.random() * W * 0.5;
+  const startY = Math.random() * H * 0.4;
+  const dist = 300 + Math.random() * 400;
+  const angle = (20 + Math.random() * 20) * (Math.PI / 180); // ~30deg down-right
+  const endX = startX + Math.cos(angle) * dist;
+  const endY = startY + Math.sin(angle) * dist;
+  shoot.style.transition = "none";
+  shoot.style.transform = `translate(${startX}px, ${startY}px) rotate(${angle}rad)`;
+  shoot.style.opacity = "0";
+
+  // next frame
+  requestAnimationFrame(() => {
+    shoot.style.transition = "transform 1.1s cubic-bezier(0.4,0,0.2,1), opacity 1.1s ease-out";
+    shoot.style.transform = `translate(${endX}px, ${endY}px) rotate(${angle}rad)`;
+    shoot.style.opacity = "1";
+    setTimeout(() => { shoot.style.opacity = "0"; }, 700);
+  });
+}
+function scheduleShootingStar() {
+  const wait = 8000 + Math.random() * 12000;
+  setTimeout(() => { fireShootingStar(); scheduleShootingStar(); }, wait);
+}
+
+/* ------------------------------------------------------------
+   8. INIT + RESIZE
+   ------------------------------------------------------------ */
+
+function initAll() {
+  initStars();
+  resizeSpark();
+  requestAnimationFrame(drawStars);
+  requestAnimationFrame(drawParticles);
+  setTimeout(fireShootingStar, 3500);
+  scheduleShootingStar();
+}
+window.addEventListener("resize", () => {
+  initStars();
+  resizeSpark();
+});
+initAll();
+
+</script>
+</body>
+</html>
